@@ -1,0 +1,4 @@
+uploads/
+composer.lock
+vendor/
+**/.DS_STORE
