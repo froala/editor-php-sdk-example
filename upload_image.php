@@ -1,11 +1,13 @@
 <?php
 
-require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/froala_editor.php';
+require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor.php';
 
 try {
-  $response = FroalaEditor_Image::upload('/examples/uploads/');
+  $response = FroalaEditor_Image::upload('/uploads/');
   echo stripslashes(json_encode($response));
+
 } catch (Exception $e) {
-  echo $response;
+
+  echo $e->getMessage();
   http_response_code(404);
 }

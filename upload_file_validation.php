@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/froala_editor.php';
+require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor.php';
 
 $options = array(
   'fieldname' => 'myFile',
@@ -17,9 +17,9 @@ $options = array(
 );
 
 try {
-  $response = FroalaEditor_File::upload('/examples/uploads/', $options);
+  $response = FroalaEditor_File::upload('/uploads/', $options);
   echo stripslashes(json_encode($response));
 } catch (Exception $e) {
-  echo $response;
+  echo $e->getMessage();
   http_response_code(404);
 }

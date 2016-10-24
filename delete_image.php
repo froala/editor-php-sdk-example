@@ -1,11 +1,11 @@
 <?php
 
-require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/froala_editor.php';
+require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor.php';
 
 try {
   $response = FroalaEditor_Image::delete($_POST['src']);
   echo stripslashes(json_encode('Success'));
 } catch (Exception $e) {
-  echo $response;
+  echo $e->getMessage();
   http_response_code(404);
 }
