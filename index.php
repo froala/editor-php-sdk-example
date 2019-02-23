@@ -111,6 +111,11 @@ $hash = stripslashes(json_encode($hash));
           id: 'my_editor'
         },
 
+        videoUploadURL: './upload_video.php',
+        videoUploadParams: {
+          id: 'my_editor'
+        },
+        
         fileUploadURL: './upload_file.php',
         fileUploadParams: {
           id: 'my_editor'
@@ -119,6 +124,26 @@ $hash = stripslashes(json_encode($hash));
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
         imageManagerDeleteMethod: "POST"
+      })
+      .on('froalaEditor.video.removed', function (e, editor, $video) {
+        $.ajax({
+          // Request method.
+          method: "POST",
+
+          // Request URL.
+          url: "./delete_video.php",
+
+          // Request params.
+          data: {
+            src: $video.attr('src')
+          }
+        })
+        .done (function (data) {
+          console.log ('video was deleted');
+        })
+        .fail (function (err) {
+          console.log ('video delete problem: ' + JSON.stringify(err));
+        })
       })
       // Catch image removal from the editor.
       .on('froalaEditor.image.removed', function (e, editor, $img) {
@@ -323,7 +348,8 @@ $hash = stripslashes(json_encode($hash));
     $(function() {
       $('#edit-amazon').froalaEditor({
           imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
-          fileUploadToS3: JSON.parse('<?php echo $hash; ?>')
+          fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
+          videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
       });
 
     });
