@@ -111,6 +111,11 @@ $hash = stripslashes(json_encode($hash));
           id: 'my_editor'
         },
 
+        videoUploadURL: './upload_video.php',
+        videoUploadParams: {
+          id: 'my_editor'
+        },
+        
         fileUploadURL: './upload_file.php',
         fileUploadParams: {
           id: 'my_editor'
@@ -119,6 +124,30 @@ $hash = stripslashes(json_encode($hash));
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
         imageManagerDeleteMethod: "POST"
+      })
+      .on('froalaEditor.video.removed', function (e, editor, $video) {
+        $.ajax({
+          // Request method.
+          method: "POST",
+
+          // Request URL.
+          url: "./delete_video.php",
+
+          // Request params.
+          data: {
+            src: $video.attr('src')
+          }
+        })
+        .done (function (data) {
+          if(data=='"Success"'){
+            console.log ('video was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
+        })
+        .fail (function (err) {
+          console.log ('video delete problem: ' + JSON.stringify(err));
+        })
       })
       // Catch image removal from the editor.
       .on('froalaEditor.image.removed', function (e, editor, $img) {
@@ -135,7 +164,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('image was deleted');
+          if(data=='"Success"'){
+            console.log ('image was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
@@ -158,7 +191,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('file was deleted');
+          if(data=='"Success"'){
+            console.log ('file was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
@@ -206,7 +243,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('image was deleted');
+          if(data=='"Success"'){
+            console.log ('image was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
@@ -229,7 +270,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('file was deleted');
+          if(data=='"Success"'){
+            console.log ('file was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
@@ -280,7 +325,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('image was deleted');
+          if(data=='"Success"'){
+            console.log ('image was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
@@ -303,7 +352,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('file was deleted');
+          if(data=='"Success"'){
+            console.log ('file was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
@@ -323,7 +376,8 @@ $hash = stripslashes(json_encode($hash));
     $(function() {
       $('#edit-amazon').froalaEditor({
           imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
-          fileUploadToS3: JSON.parse('<?php echo $hash; ?>')
+          fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
+          videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
       });
 
     });
