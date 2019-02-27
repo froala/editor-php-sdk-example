@@ -12,6 +12,7 @@ try {
   else {
     echo stripslashes(json_encode('Failure'));
   }
+
 } catch (Exception $e) {
   echo $e->getMessage();
   http_response_code(404);
