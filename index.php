@@ -139,7 +139,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('video was deleted');
+          if(data=='"Success"'){
+            console.log ('video was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('video delete problem: ' + JSON.stringify(err));
@@ -160,7 +164,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('image was deleted');
+          if(data=='"Success"'){
+            console.log ('image was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
@@ -183,7 +191,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('file was deleted');
+          if(data=='"Success"'){
+            console.log ('file was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
@@ -231,7 +243,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('image was deleted');
+          if(data=='"Success"'){
+            console.log ('image was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
@@ -254,7 +270,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('file was deleted');
+          if(data=='"Success"'){
+            console.log ('file was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
@@ -305,7 +325,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('image was deleted');
+          if(data=='"Success"'){
+            console.log ('image was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
@@ -328,7 +352,11 @@ $hash = stripslashes(json_encode($hash));
           }
         })
         .done (function (data) {
-          console.log ('file was deleted');
+          if(data=='"Success"'){
+            console.log ('file was deleted');  
+          } else {
+            console.log('could not access the path');
+          }
         })
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));

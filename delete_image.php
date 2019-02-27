@@ -3,8 +3,16 @@
 require __DIR__ . '/vendor/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor.php';
 
 try {
-  $response = FroalaEditor_Image::delete($_POST['src']);
-  echo stripslashes(json_encode('Success'));
+  $src = $_POST['src'];
+  $srcArray = explode("/",$src);
+  if($srcArray[1]=='uploads'){
+    $response = FroalaEditor_Image::delete($_POST['src']);
+    echo stripslashes(json_encode('Success'));
+  }
+  else {
+    echo stripslashes(json_encode('Failure'));
+  }
+  
 } catch (Exception $e) {
   echo $e->getMessage();
   http_response_code(404);
