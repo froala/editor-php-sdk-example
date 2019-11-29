@@ -39,10 +39,9 @@ $hash = stripslashes(json_encode($hash));
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"./>
-  <script src="./vendor/components/jquery/jquery.min.js"></script>
 
-  <!-- Include Font Awesome. -->
-  <link href="./vendor/fortawesome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Include Font Awesome. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Include Froala Editor styles -->
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/froala_editor.min.css" />
@@ -72,6 +71,7 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/colors.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/emoticons.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/entities.min.js"></script>
+  <script src="./vendor/froala/wysiwyg-editor/js/third_party/embedly.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/file.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/font_family.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/font_size.min.js"></script>
@@ -84,10 +84,27 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/lists.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/paragraph_format.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/paragraph_style.min.js"></script>
+  <script src="./vendor/froala/wysiwyg-editor/js/plugins/print.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/quote.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/save.min.js"></script>
+  <script src="./vendor/froala/wysiwyg-editor/js/third_party/spell_checker.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/table.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/video.min.js"></script>
+  <script src="./vendor/froala/wysiwyg-editor/js/third_party/font_awesome.min.js"></script>
+  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+  
+  <!-- Include TUI JS. -->
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tui-code-snippet@1.4.0/dist/tui-code-snippet.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.min.js"></script>
+
+ <script src="./vendor/froala/wysiwyg-editor/js/third_party/image_tui.min.js"></script>
+
+ <!-- Include TUI CSS. -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.css">
+ <link rel="stylesheet" href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.css">
+
   <!-- End Froala -->
 
   <link rel="stylesheet" href="./app.css">
@@ -103,9 +120,9 @@ $hash = stripslashes(json_encode($hash));
     </form>
   </div>
   <script>
-    $(function() {
-      $('#edit').froalaEditor({
-
+    (function() {
+      new FroalaEditor('#edit',{
+        scaytCustomerId: '1:BaPcJ-zIoA84-HsdxA4-AlMum2-hrr633-cGEma1-WMaXJ-DfFbh4-Vo2ew4-plJvP1-IMwbD-La3',
         imageUploadURL: './upload_image.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -125,7 +142,7 @@ $hash = stripslashes(json_encode($hash));
         imageManagerDeleteURL: "./delete_image.php",
         imageManagerDeleteMethod: "POST"
       })
-      .on('froalaEditor.video.removed', function (e, editor, $video) {
+      'video.removed', function (e, editor, $video) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -148,9 +165,9 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('video delete problem: ' + JSON.stringify(err));
         })
-      })
+      }
       // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
+      'image.removed', function (e, editor, $img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -173,10 +190,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      })
+      }
 
       // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+      'file.unlink', function (e, editor, link) {
 
         $.ajax({
           // Request method.
@@ -200,8 +217,8 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    })();
   </script>
 
   <div class="sample">
@@ -211,8 +228,8 @@ $hash = stripslashes(json_encode($hash));
     </form>
   </div>
   <script>
-    $(function() {
-      $('#edit-resize').froalaEditor({
+    (function() {
+      new FroalaEditor('#edit-resize',{
 
         imageUploadURL: './upload_image_resize.php',
         imageUploadParams: {
@@ -229,7 +246,7 @@ $hash = stripslashes(json_encode($hash));
         imageManagerDeleteMethod: "POST"
       })
       // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
+      'image.removed', function (e, editor, $img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -252,10 +269,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      })
+      }
 
       // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+      'file.unlink', function (e, editor, link) {
 
         $.ajax({
           // Request method.
@@ -279,8 +296,8 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    })();
   </script>
 
     <div class="sample">
@@ -290,8 +307,8 @@ $hash = stripslashes(json_encode($hash));
     </form>
   </div>
   <script>
-    $(function() {
-      $('#edit-validation').froalaEditor({
+    (function() {
+      new FroalaEditor('#edit-validation',{
 
         imageUploadURL: './upload_image_validation.php',
         imageUploadParams: {
@@ -311,7 +328,7 @@ $hash = stripslashes(json_encode($hash));
         imageManagerDeleteMethod: "POST"
       })
       // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
+      'image.removed', function (e, editor, $img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -334,10 +351,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      })
+      }
 
       // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+      'file.unlink', function (e, editor, link) {
 
         $.ajax({
           // Request method.
@@ -361,8 +378,8 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    })();
   </script>
 
   <div class="sample">
@@ -373,14 +390,14 @@ $hash = stripslashes(json_encode($hash));
   </div>
 
   <script>
-    $(function() {
-      $('#edit-amazon').froalaEditor({
+    (function() {
+      new FroalaEditor('#edit-amazon',{
           imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
       });
 
-    });
+    })();
   </script>
 </body>
 
