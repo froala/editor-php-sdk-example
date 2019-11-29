@@ -105,6 +105,7 @@ $hash = stripslashes(json_encode($hash));
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.css">
  <link rel="stylesheet" href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.css">
 
+ <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/third_party/image_tui.min.css">
   <!-- End Froala -->
 
   <link rel="stylesheet" href="./app.css">

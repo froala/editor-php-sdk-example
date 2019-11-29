@@ -16,12 +16,11 @@ The following PHP extensions are required:
 ```html
 <!-- Include third party plugins -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<script src="static/bower_components/froala-wysiwyg-editor/js/third_party/font_awesome.min.js"></script>
-<script src="static/bower_components/froala-wysiwyg-editor/js/third_party/spell_checker.min.js"></script>
-<script src="static/bower_components/froala-wysiwyg-editor/js/third_party/embedly.min.js"></script>
-<script src="static/bower_components/froala-wysiwyg-editor/js/third_party/spell_checker.min.js"></script>
-<script src="static/bower_components/froala-wysiwyg-editor/js/third_party/image_tui.min.js"></script> 
-<link rel="stylesheet" href="static/bower_components/froala-wysiwyg-editor/css/third_party/image_tui.min.css">
+<script src="./vendor/froala/wysiwyg-editor/js/third_party/font_awesome.min.js"></script>
+<script src="./vendor/froala/wysiwyg-editor/js/third_party/spell_checker.min.js"></script>
+<script src="./vendor/froala/wysiwyg-editor/js/third_party/embedly.min.js"></script>
+<script src="./vendor/froala/wysiwyg-editor/js/third_party/image_tui.min.js"></script>
+<link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/third_party/image_tui.min.css">
 ```
 
 ## Setup Instructions
