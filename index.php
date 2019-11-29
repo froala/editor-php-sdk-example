@@ -39,9 +39,10 @@ $hash = stripslashes(json_encode($hash));
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0"./>
+  <script src="./vendor/components/jquery/jquery.min.js"></script>
 
   <!-- Include Font Awesome. -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="./vendor/fortawesome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Include Froala Editor styles -->
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/froala_editor.min.css" />
@@ -71,7 +72,6 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/colors.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/emoticons.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/entities.min.js"></script>
-  <script src="./vendor/froala/wysiwyg-editor/js/third_party/embedly.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/file.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/font_family.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/font_size.min.js"></script>
@@ -84,28 +84,10 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/lists.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/paragraph_format.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/paragraph_style.min.js"></script>
-  <script src="./vendor/froala/wysiwyg-editor/js/plugins/print.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/quote.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/save.min.js"></script>
-  <script src="./vendor/froala/wysiwyg-editor/js/third_party/spell_checker.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/table.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/video.min.js"></script>
-  <script src="./vendor/froala/wysiwyg-editor/js/third_party/font_awesome.min.js"></script>
-  <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-
-  
-  <!-- Include TUI JS. -->
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.min.js"></script>
- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tui-code-snippet@1.4.0/dist/tui-code-snippet.min.js"></script>
- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.min.js"></script>
-
- <script src="./vendor/froala/wysiwyg-editor/js/third_party/image_tui.min.js"></script>
-
- <!-- Include TUI CSS. -->
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tui-image-editor@3.2.2/dist/tui-image-editor.css">
- <link rel="stylesheet" href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.css">
-
- <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/third_party/image_tui.min.css">
   <!-- End Froala -->
 
   <link rel="stylesheet" href="./app.css">
