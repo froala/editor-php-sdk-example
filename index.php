@@ -26,7 +26,7 @@ $config = array(
   'accessKey' => $accessKeyId,
   'secretKey' => $secretKey
 );
-
+print_r($config);
 $hash = FroalaEditor_S3::getHash($config);
 $hash = stripslashes(json_encode($hash));
 
@@ -42,7 +42,7 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/components/jquery/jquery.min.js"></script>
 
   <!-- Include Font Awesome. -->
-  <link href="./vendor/fortawesome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
 
   <!-- Include Froala Editor styles -->
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/froala_editor.min.css" />
@@ -104,8 +104,8 @@ $hash = stripslashes(json_encode($hash));
   </div>
   <script>
     $(function() {
-      $('#edit').froalaEditor({
-
+      new FroalaEditor('#edit',
+      {
         imageUploadURL: './upload_image.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -123,61 +123,61 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
-      })
-      .on('froalaEditor.video.removed', function (e, editor, $video) {
-        $.ajax({
-          // Request method.
-          method: "POST",
+        imageManagerDeleteMethod: "POST",
 
-          // Request URL.
-          url: "./delete_video.php",
+        events : {
+          // Catch video removal from the editor.
+          'video.removed': function ($video) {
+            $.ajax({
+              // Request method.
+              method: "POST",
 
-          // Request params.
-          data: {
-            src: $video.attr('src')
-          }
-        })
-        .done (function (data) {
-          if(data=='"Success"'){
-            console.log ('video was deleted');  
-          } else {
-            console.log('could not access the path');
-          }
-        })
-        .fail (function (err) {
-          console.log ('video delete problem: ' + JSON.stringify(err));
-        })
-      })
-      // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
-        $.ajax({
-          // Request method.
-          method: "POST",
+              // Request URL.
+              url: "./delete_video.php",
+              
+              // Request params.
+              data: {
+                src: $video.attr('src')
+              }
+            })
+          .done (function (data) {
+            if(data=='"Success"'){
+              console.log ('video was deleted');  
+            } else {
+              console.log('could not access the path');
+            }
+          })
+          .fail (function (err) {
+            console.log ('video delete problem: ' + JSON.stringify(err));
+          })
+        },
+       // Catch image removal from the editor.
+        'image.removed': function ($img) {
+          $.ajax({
+            // Request method.
+            method: "POST",
 
-          // Request URL.
-          url: "./delete_image.php",
+            // Request URL.
+            url: "./delete_image.php",
 
-          // Request params.
-          data: {
-            src: $img.attr('src')
-          }
-        })
-        .done (function (data) {
-          if(data=='"Success"'){
-            console.log ('image was deleted');  
-          } else {
-            console.log('could not access the path');
-          }
-        })
-        .fail (function (err) {
-          console.log ('image delete problem: ' + JSON.stringify(err));
-        })
-      })
-
-      // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
-
+            // Request params.
+            data: {
+              src: $img.attr('src')
+            }
+          })
+          .done (function (data) {
+            if(data=='"Success"'){
+              console.log ('image was deleted');  
+            } else {
+              console.log('could not access the path');
+            }
+          })
+          .fail (function (err) {
+            console.log ('image delete problem: ' + JSON.stringify(err));
+          })
+        },
+        // Catch file removal from the editor.
+        'file.unlink': function (link) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -200,11 +200,13 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
-  </script>
+      }
+    }
+  })
+});
+</script>
 
-  <div class="sample">
+<div class="sample">
     <h2>Sample 2: Save to disk (resize on server)</h2>
     <form>
       <textarea id="edit-resize" name="content"></textarea>
@@ -212,7 +214,8 @@ $hash = stripslashes(json_encode($hash));
   </div>
   <script>
     $(function() {
-      $('#edit-resize').froalaEditor({
+      new FroalaEditor('#edit-resize',
+     {
 
         imageUploadURL: './upload_image_resize.php',
         imageUploadParams: {
@@ -226,36 +229,36 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
-      })
-      // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
-        $.ajax({
-          // Request method.
-          method: "POST",
+        imageManagerDeleteMethod: "POST",
+        events : {
+        // Catch image removal from the editor.
+        'image.removed': function ($img) {
+          $.ajax({
+            // Request method.
+            method: "POST",
 
-          // Request URL.
-          url: "./delete_image.php",
+            // Request URL.
+            url: "./delete_image.php",
 
-          // Request params.
-          data: {
-            src: $img.attr('src')
-          }
-        })
-        .done (function (data) {
-          if(data=='"Success"'){
-            console.log ('image was deleted');  
-          } else {
-            console.log('could not access the path');
-          }
-        })
-        .fail (function (err) {
-          console.log ('image delete problem: ' + JSON.stringify(err));
-        })
-      })
+            // Request params.
+            data: {
+              src: $img.attr('src')
+            }
+          })
+          .done (function (data) {
+            if(data=='"Success"'){
+              console.log ('image was deleted');  
+            } else {
+              console.log('could not access the path');
+            }
+          })
+          .fail (function (err) {
+            console.log ('image delete problem: ' + JSON.stringify(err));
+          })
+        },
 
-      // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+        // Catch file removal from the editor.
+        'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
@@ -279,8 +282,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    }
+  })
+});
   </script>
 
     <div class="sample">
@@ -291,7 +296,7 @@ $hash = stripslashes(json_encode($hash));
   </div>
   <script>
     $(function() {
-      $('#edit-validation').froalaEditor({
+      new FroalaEditor('#edit-validation', {
 
         imageUploadURL: './upload_image_validation.php',
         imageUploadParams: {
@@ -308,37 +313,36 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
-      })
-      // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
-        $.ajax({
-          // Request method.
-          method: "POST",
+        imageManagerDeleteMethod: "POST",
+        events : {
+        // Catch image removal from the editor.
+        'image.removed': function ($img) {
+          $.ajax({
+            // Request method.
+            method: "POST",
 
-          // Request URL.
-          url: "./delete_image.php",
+            // Request URL.
+            url: "./delete_image.php",
 
-          // Request params.
-          data: {
-            src: $img.attr('src')
-          }
-        })
-        .done (function (data) {
-          if(data=='"Success"'){
-            console.log ('image was deleted');  
-          } else {
-            console.log('could not access the path');
-          }
-        })
-        .fail (function (err) {
-          console.log ('image delete problem: ' + JSON.stringify(err));
-        })
-      })
-
-      // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
-
+            // Request params.
+            data: {
+              src: $img.attr('src')
+            }
+          })
+          .done (function (data) {
+            if(data=='"Success"'){
+              console.log ('image was deleted');  
+            } else {
+              console.log('could not access the path');
+            }
+          })
+          .fail (function (err) {
+            console.log ('image delete problem: ' + JSON.stringify(err));
+          })
+        },
+        // Catch file removal from the editor.
+        'file.unlink': function (link) {
+          
         $.ajax({
           // Request method.
           method: "POST",
@@ -361,7 +365,9 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
+      }
+    }
+ }) 
     });
   </script>
 
@@ -374,10 +380,10 @@ $hash = stripslashes(json_encode($hash));
 
   <script>
     $(function() {
-      $('#edit-amazon').froalaEditor({
-          imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
-          fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
-          videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
+      new FroalaEditor('#edit-amazon',{
+        imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
+        fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
+        videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
       });
 
     });
