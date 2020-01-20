@@ -27,6 +27,7 @@ The following PHP extensions are required:
  Or if you installed composer globally:
 
         composer install
+ 4.  Before running the application, create 'uploads' folder at wamp www root directory
 
 ## Documentation
 

@@ -104,7 +104,7 @@ $hash = stripslashes(json_encode($hash));
   </div>
   <script>
     (function() {
-      new FroalaEditor('#edit'{
+      new FroalaEditor('#edit',{
         
         imageUploadURL: './upload_image.php',
         imageUploadParams: {
@@ -123,9 +123,9 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
+        imageManagerDeleteMethod: "POST",
       events : {
-      'video.removed', function ($video) {
+      'video.removed': function ($video) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -148,9 +148,9 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('video delete problem: ' + JSON.stringify(err));
         })
-      }
+      },
       // Catch image removal from the editor.
-      'image.removed', function ($img) {
+      'image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -173,10 +173,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      }
+      },
 
       // Catch image removal from the editor.
-      'file.unlink', function (link) {
+      'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
@@ -228,10 +228,10 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
+        imageManagerDeleteMethod: "POST",
       events : {
       // Catch image removal from the editor.
-      ('image.removed', function ($img) {
+      ('image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -254,10 +254,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      }
+      },
 
       // Catch image removal from the editor.
-      'file.unlink', function (link) {
+      'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
@@ -312,10 +312,10 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
+        imageManagerDeleteMethod: "POST",
       events :{
       // Catch image removal from the editor.
-      'image.removed', function ($img) {
+      'image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -338,10 +338,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      }
+      },
 
       // Catch image removal from the editor.
-      'file.unlink', function (link) {
+      'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
