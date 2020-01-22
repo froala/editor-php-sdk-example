@@ -4,7 +4,7 @@
     "components/jquery": ">=1.11.0",
     "fortawesome/font-awesome": ">=4.4.0",
     "froala/wysiwyg-editor": ">=2.3.5",
-    "froala/wysiwyg-editor-php-sdk": "1.0.1"
+    "froala/wysiwyg-editor-php-sdk": "1.1.0"
   },
   "support": {
     "issues": "https://github.com/froala/froala-editor-php-sdk/issues",
