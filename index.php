@@ -231,7 +231,7 @@ $hash = stripslashes(json_encode($hash));
         imageManagerDeleteMethod: "POST",
       events : {
       // Catch image removal from the editor.
-      ('image.removed': function ($img) {
+      'image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
