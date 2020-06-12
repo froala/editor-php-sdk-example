@@ -16,7 +16,8 @@ $options = array(
     $size = $imagick->getImageGeometry();
     $imagick->destroy();
 
-    if ($size['width'] != $size['height']) {
+    $sizeFile = $imagick->getImageSize();
+    if ($sizeFile['width'] != $sizeFile['height']) {
       return false;
     }
     return true;
