@@ -103,9 +103,9 @@ $hash = stripslashes(json_encode($hash));
     </form>
   </div>
   <script>
-    $(function() {
-      $('#edit').froalaEditor({
-
+    (function() {
+      new FroalaEditor('#edit',{
+        
         imageUploadURL: './upload_image.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -123,9 +123,9 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
-      })
-      .on('froalaEditor.video.removed', function (e, editor, $video) {
+        imageManagerDeleteMethod: "POST",
+      events : {
+      'video.removed': function ($video) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -148,9 +148,9 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('video delete problem: ' + JSON.stringify(err));
         })
-      })
+      },
       // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
+      'image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -173,10 +173,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      })
+      },
 
       // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+      'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
@@ -200,8 +200,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    }
+  })
+})();
   </script>
 
   <div class="sample">
@@ -211,8 +213,8 @@ $hash = stripslashes(json_encode($hash));
     </form>
   </div>
   <script>
-    $(function() {
-      $('#edit-resize').froalaEditor({
+    (function() {
+      new FroalaEditor('#edit-resize',{
 
         imageUploadURL: './upload_image_resize.php',
         imageUploadParams: {
@@ -226,10 +228,10 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
-      })
+        imageManagerDeleteMethod: "POST",
+      events : {
       // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
+      'image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -252,10 +254,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      })
+      },
 
       // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+      'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
@@ -279,8 +281,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    }
+  })
+})();
   </script>
 
     <div class="sample">
@@ -290,8 +294,8 @@ $hash = stripslashes(json_encode($hash));
     </form>
   </div>
   <script>
-    $(function() {
-      $('#edit-validation').froalaEditor({
+    (function() {
+      new FroalaEditor('#edit-validation',{
 
         imageUploadURL: './upload_image_validation.php',
         imageUploadParams: {
@@ -308,10 +312,10 @@ $hash = stripslashes(json_encode($hash));
 
         imageManagerLoadURL: './load_images.php',
         imageManagerDeleteURL: "./delete_image.php",
-        imageManagerDeleteMethod: "POST"
-      })
+        imageManagerDeleteMethod: "POST",
+      events :{
       // Catch image removal from the editor.
-      .on('froalaEditor.image.removed', function (e, editor, $img) {
+      'image.removed': function ($img) {
         $.ajax({
           // Request method.
           method: "POST",
@@ -334,10 +338,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
         })
-      })
+      },
 
       // Catch image removal from the editor.
-      .on('froalaEditor.file.unlink', function (e, editor, link) {
+      'file.unlink': function (link) {
 
         $.ajax({
           // Request method.
@@ -361,8 +365,10 @@ $hash = stripslashes(json_encode($hash));
         .fail (function (err) {
           console.log ('file delete problem: ' + JSON.stringify(err));
         })
-      })
-    });
+      }
+    }
+  })
+})();
   </script>
 
   <div class="sample">
@@ -373,14 +379,14 @@ $hash = stripslashes(json_encode($hash));
   </div>
 
   <script>
-    $(function() {
-      $('#edit-amazon').froalaEditor({
+    (function() {
+      new FroalaEditor('#edit-amazon',{
           imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
       });
 
-    });
+    })();
   </script>
 </body>
 
