@@ -53,6 +53,7 @@ $hash = stripslashes(json_encode($hash));
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/code_view.css">
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/colors.css">
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/emoticons.css">
+  <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/files_manager.css">
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/file.css">
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/fullscreen.css">
   <link rel="stylesheet" href="./vendor/froala/wysiwyg-editor/css/plugins/image_manager.css">
@@ -71,6 +72,7 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/code_view.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/colors.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/emoticons.min.js"></script>
+  <script src="./vendor/froala/wysiwyg-editor/js/plugins/files_manager.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/entities.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/file.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/font_family.min.js"></script>
@@ -106,6 +108,7 @@ $hash = stripslashes(json_encode($hash));
     (function() {
       new FroalaEditor('#edit',{
         
+        filesManagerUploadURL: './upload_files.php',
         imageUploadURL: './upload_image.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -216,6 +219,7 @@ $hash = stripslashes(json_encode($hash));
     (function() {
       new FroalaEditor('#edit-resize',{
 
+        filesManagerUploadURL: './upload_image_resize.php',
         imageUploadURL: './upload_image_resize.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -297,6 +301,7 @@ $hash = stripslashes(json_encode($hash));
     (function() {
       new FroalaEditor('#edit-validation',{
 
+        filesManagerUploadURL: './upload_files_validation.php',
         imageUploadURL: './upload_image_validation.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -383,7 +388,8 @@ $hash = stripslashes(json_encode($hash));
       new FroalaEditor('#edit-amazon',{
           imageUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
-          videoUploadToS3: JSON.parse('<?php echo $hash; ?>')
+          videoUploadToS3: JSON.parse('<?php echo $hash; ?>'),
+          filesManagerUploadToS3: JSON.parse('<?php echo $hash; ?>')
       });
 
     })();
