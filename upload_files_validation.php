@@ -6,16 +6,14 @@ $options = array(
   'fieldname' => 'myFile',
   'validation' => function($filePath, $mimetype) {
 
-    $size = filesize($filePath);
-
-    if ($size > 10 * 1024 * 1024) {
+    $imagick = new \Imagick($filePath);
+    $sizeFile = $imagick->getImageSize();    
+    if ($sizeFile > 10 * 1024 * 1024) {
       return false;
     }
 
-    $imagick = new \Imagick($filePath);
     $size = $imagick->getImageGeometry();
-    $imagick->destroy();
-
+    $imagick->destroy();    
     if ($size['width'] != $size['height']) {
       return false;
     }
