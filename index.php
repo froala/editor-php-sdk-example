@@ -485,7 +485,7 @@ $hash_azure = stripslashes(json_encode($config_azure));
   </script>
 
 <div class="sample">
-    <h2>Sample 5: Save to Azure</h2>
+    <h2>Sample 5: Save to Azure using access key or SAS token.</h2>
     <form>
       <textarea id="edit-azure" name="content"></textarea>
     </form>
