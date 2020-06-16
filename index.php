@@ -30,6 +30,16 @@ $config = array(
 $hash = FroalaEditor_S3::getHash($config);
 $hash = stripslashes(json_encode($hash));
 
+$config_azure =array(
+  'account' => $account,
+  'container' => $container,
+  'accessKey' => $accessKey,
+  'SASToken' => $SASToken,
+  'uploadURL' => $uploadURL  
+);
+
+$hash_azure = stripslashes(json_encode($config_azure));
+
 ?>
 
 <!DOCTYPE html>
@@ -469,6 +479,26 @@ $hash = stripslashes(json_encode($hash));
           fileUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           videoUploadToS3: JSON.parse('<?php echo $hash; ?>'),
           filesManagerUploadToS3: JSON.parse('<?php echo $hash; ?>')
+      });
+
+    })();
+  </script>
+
+<div class="sample">
+    <h2>Sample 5: Save to Azure using access key or SAS token.</h2>
+    <form>
+      <textarea id="edit-azure" name="content"></textarea>
+    </form>
+  </div>
+
+  <script>
+
+    (function() {
+      new FroalaEditor('#edit-azure',{
+        imageUploadToAzure: JSON.parse('<?php echo $hash_azure; ?>'),
+        fileUploadToAzure: JSON.parse('<?php echo $hash_azure; ?>'),
+        videoUploadToAzure: JSON.parse('<?php echo $hash_azure; ?>'),
+        filesManagerUploadToAzure: JSON.parse('<?php echo $hash_azure; ?>')
       });
 
     })();
