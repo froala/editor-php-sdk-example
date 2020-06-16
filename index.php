@@ -178,6 +178,32 @@ $hash = stripslashes(json_encode($hash));
         })
       },
 
+      // Catch file removal from files manager.
+      'filesManager.removed': function (link) {
+        $.ajax({
+          // Request method.
+          method: "POST",
+
+          // Request URL.
+          url: "./delete_files.php",
+
+          // Request params.
+          data: {
+            src: link
+          }
+        })
+        .done (function (data) {
+          if(data=='"Success"'){
+            console.log ('file was deleted from files manager popup');  
+          } else {
+            console.log('could not access the path');
+          }
+        })
+        .fail (function (err) {
+          console.log ('file delete problem from files manager popup: ' + JSON.stringify(err));
+        })
+      },
+
       // Catch image removal from the editor.
       'file.unlink': function (link) {
 
@@ -260,6 +286,32 @@ $hash = stripslashes(json_encode($hash));
         })
       },
 
+      // Catch file removal from files manager.
+      'filesManager.removed': function (link) {
+        $.ajax({
+          // Request method.
+          method: "POST",
+
+          // Request URL.
+          url: "./delete_files.php",
+
+          // Request params.
+          data: {
+            src: link
+          }
+        })
+        .done (function (data) {
+          if(data=='"Success"'){
+            console.log ('file was deleted from files manager popup');  
+          } else {
+            console.log('could not access the path');
+          }
+        })
+        .fail (function (err) {
+          console.log ('file delete problem from files manager popup: ' + JSON.stringify(err));
+        })
+      },
+
       // Catch image removal from the editor.
       'file.unlink': function (link) {
 
@@ -302,6 +354,7 @@ $hash = stripslashes(json_encode($hash));
       new FroalaEditor('#edit-validation',{
 
         filesManagerUploadURL: './upload_files_validation.php',
+        filesManagerUploadParam: 'myImage',
         imageUploadURL: './upload_image_validation.php',
         imageUploadParams: {
           id: 'my_editor'
@@ -342,6 +395,32 @@ $hash = stripslashes(json_encode($hash));
         })
         .fail (function (err) {
           console.log ('image delete problem: ' + JSON.stringify(err));
+        })
+      },
+
+      // Catch file removal from files manager.
+      'filesManager.removed': function (link) {
+        $.ajax({
+          // Request method.
+          method: "POST",
+
+          // Request URL.
+          url: "./delete_files.php",
+
+          // Request params.
+          data: {
+            src: link
+          }
+        })
+        .done (function (data) {
+          if(data=='"Success"'){
+            console.log ('file was deleted from files manager popup');  
+          } else {
+            console.log('could not access the path');
+          }
+        })
+        .fail (function (err) {
+          console.log ('file delete problem from files manager popup: ' + JSON.stringify(err));
         })
       },
 
