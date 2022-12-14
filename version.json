@@ -9,6 +9,6 @@
         "stg": "1",  
         "comment-3": "froala-editor-sdk - set the branchname of php sdk git repo",
         "php_sdk_name": "wysiwyg-editor-php-sdk",
-        "php_sdk_repo": "github.com/froala/wysiwyg-editor-php-sdk-mcs.git",
+        "php_sdk_repo": "github.com/froala/wysiwyg-editor-php-sdk.git",
         "php_sdk_branch": "QA1312"
 }

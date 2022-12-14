@@ -27,7 +27,7 @@ echo "Package name : ${PACKAGE_NAME}"
 PHP_SDK_NAME=`jq '.php_sdk_name' version.json | tr -d '"'`
 PHP_BRANCH_NAME=`jq '.php_sdk_branch' version.json | tr -d '"'` 
 PHP_SDK_GIT_URL=`jq '.php_sdk_repo' version.json | tr -d '"'`
-echo "SDK: ${PHP_SDK_NAME}  , branch: ${PHP_BRANCH_NAME}  ,  version: ${PACKAGE_VERSION} , git rul: ${PHP_SDK_GIT_URL}"
+echo "SDK: ${PHP_SDK_NAME}  , branch: ${PHP_BRANCH_NAME}  ,  version: ${PACKAGE_VERSION} , git url: ${PHP_SDK_GIT_URL}"
 docker build -t  ${IMAGE_NAME}:${SHORT_COMMIT} --build-arg PackageName=${PACKAGE_NAME} --build-arg PackageVersion=${PACKAGE_VERSION} --build-arg NexusUser=${NEXUS_USER} --build-arg NexusPassword=${NEXUS_USER_PWD} --build-arg GitUsr=${GITHUB_USR} --build-arg GitToken=${GITHUB_TOKEN}  --build-arg PHPsdkGitURL=${PHP_SDK_GIT_URL} --build-arg PHPsdkBranch=${PHP_BRANCH_NAME}   .
 sleep 3
 docker image ls 
