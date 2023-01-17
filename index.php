@@ -87,7 +87,7 @@ $hash = stripslashes(json_encode($hash));
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/quote.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/save.min.js"></script>
   <script src="./vendor/froala/wysiwyg-editor/js/plugins/table.min.js"></script>
-  <!-- <script src="./vendor/froala/wysiwyg-editor/js/plugins/video.min.js"></script> -->
+  <script src="./vendor/froala/wysiwyg-editor/js/plugins/video.min.js"></script>
   <!-- End Froala -->
 
   <link rel="stylesheet" href="./app.css">
