@@ -143,7 +143,7 @@ fi
 
 EXISTING_DEPLOYMENTS=`ssh -o "StrictHostKeyChecking no" -i  /tmp/sshkey.pem ${SSH_USER}@${DEPLOYMENT_SERVER} " sudo docker ps  | grep -i "${LW_REPO_NAME}-${AO_IDENTIFIER}" | wc -l" `
 
-if [ "${EXISTING_DEPLOYMENTS}" -gt "${MAX_DEPLOYMENTS_NR}" ]; then
+if [ "${EXISTING_DEPLOYMENTS}" -ge "${MAX_DEPLOYMENTS_NR}" ]; then
 
 	echo "Maximum deployments reached  on ${SDK_ENVIRONMENT} environment for ${BUILD_REPO_NAME}  ; existing deployments: ${EXISTING_DEPLOYMENTS} ; max depl: ${MAX_DEPLOYMENTS_NR} "
 	echo "Stopping container  ${OLDEST_CONTAINER} ..."
