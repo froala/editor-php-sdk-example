@@ -31,7 +31,7 @@ echo "SDK: ${PHP_SDK_NAME}  , branch: ${PHP_BRANCH_NAME}  ,  version: ${PACKAGE_
 echo "IP address of BUILD agent is: " && hostname -I
 echo "Hostname of BUILD agent is: " && hostname
 docker image prune -f
-DOCKER_BUILDKIT=0 docker build --no-cache -t ${IMAGE_NAME}:${SHORT_COMMIT} --build-arg PackageName=${PACKAGE_NAME} --build-arg PackageVersion=${PACKAGE_VERSION} --build-arg NexusUser=${NEXUS_USER} --build-arg NexusPassword=${NEXUS_USER_PWD} --build-arg GitUsr=${GITHUB_USR} --build-arg GitToken=${GITHUB_TOKEN} --build-arg PHPsdkGitURL=${PHP_SDK_GIT_URL} --build-arg PHPsdkBranch=${PHP_BRANCH_NAME}
+DOCKER_BUILDKIT=0 docker build -t ${IMAGE_NAME}:${SHORT_COMMIT} --build-arg PackageName=${PACKAGE_NAME} --build-arg PackageVersion=${PACKAGE_VERSION} --build-arg NexusUser=${NEXUS_USER} --build-arg NexusPassword=${NEXUS_USER_PWD} --build-arg GitUsr=${GITHUB_USR} --build-arg GitToken=${GITHUB_TOKEN} --build-arg PHPsdkGitURL=${PHP_SDK_GIT_URL} --build-arg PHPsdkBranch=${PHP_BRANCH_NAME}
 sleep 3
 docker image ls 
 echo "uploading to nexus  ${NEXUS_CR_TOOLS_URL}/froala-${IMAGE_NAME}:${PACKAGE_VERSION} "
