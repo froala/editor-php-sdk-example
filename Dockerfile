@@ -32,6 +32,9 @@ WORKDIR /var/www/html/
 COPY . .
 EXPOSE 80
 RUN composer install
+RUN git clone --branch=${PHPsdkBranch} https://${GitUsr}:${GitToken}@${PHPsdkGitURL} /tmp/phpsdk \
+    && /bin/cp -fr /tmp/phpsdk/* /var/www/html/vendor/froala/wysiwyg-editor-php-sdk/ \
+    && rm -rf /tmp/phpsdk
 RUN wget --no-check-certificate --user ${NexusUser}  --password ${NexusPassword} https://nexus.tools.froala-infra.com/repository/Froala-npm/${PackageName}/-/${PackageName}-${PackageVersion}.tgz
 RUN tar -xvf ${PackageName}-${PackageVersion}.tgz
 RUN cp -a package/. vendor/froala/wysiwyg-editor/
